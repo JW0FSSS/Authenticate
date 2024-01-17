@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  database:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=process.env.DB_ROOT_PASSWORD
+      - MYSQL_DATABASE=process.env.DB_DATABASE
+    volumes:
+      - JwtBase:/var/lib/mysql
+volumes:
+  JwtBase:
