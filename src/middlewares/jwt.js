@@ -5,7 +5,7 @@ export async function Jwtverify (req, res, next) {
     const { authorization } = req.headers
     const token = authorization.split(' ')[1]
 
-    const payload = await jwt.verify(token, 'hola')
+    const payload = await jwt.verify(token, process.env.KEY)
     const { id } = payload
     req.jwt = id
     next()

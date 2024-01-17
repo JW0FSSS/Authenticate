@@ -10,7 +10,7 @@ export async function Usermodel ({ password, email }) {
     const verify = await bcrypt.compare(password, user.password)
 
     if (!verify) return { email, error: 'Usuario o contraseña incorrecta' }
-    const token = await jwt.sign({ id: user.id }, 'hola', { algorithm: 'HS256', expiresIn: '10h' })
+    const token = await jwt.sign({ id: user.id }, process.env.KEY, { algorithm: 'HS256', expiresIn: '10h' })
     return { token }
   } catch (error) {
     return new Error(`error : ${error}`)
